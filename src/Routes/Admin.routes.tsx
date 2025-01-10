@@ -14,7 +14,7 @@ export type TAdminRoutes = {
   path: string;
   element: ReactNode;
 };
-const AdminPaths = [
+export const AdminPaths = [
   {
     name: "Dashboard",
     path: "dashboard",
@@ -38,44 +38,44 @@ const AdminPaths = [
   },
 ];
 
-export const AdminSideBarItems = AdminPaths.reduce(
-  (acc: TAdminSideBarItems[], item) => {
-    if (item.path && item.path) {
-      acc.push({
-        key: item.name,
-        label: <NavLink to={`/admin/${item.path}`}>{item.name}</NavLink>,
-      });
-    }
-    if (item.children) {
-      acc.push({
-        key: item.name,
-        label: item.name,
-        children: item.children.map((child) => ({
-          key: child.name,
-          label: <NavLink to={`/admin/${child.path}`}>{child.name}</NavLink>,
-        })),
-      });
-    }
+// export const AdminSideBarItems = AdminPaths.reduce(
+//   (acc: TAdminSideBarItems[], item) => {
+//     if (item.path && item.path) {
+//       acc.push({
+//         key: item.name,
+//         label: <NavLink to={`/admin/${item.path}`}>{item.name}</NavLink>,
+//       });
+//     }
+//     if (item.children) {
+//       acc.push({
+//         key: item.name,
+//         label: item.name,
+//         children: item.children.map((child) => ({
+//           key: child.name,
+//           label: <NavLink to={`/admin/${child.path}`}>{child.name}</NavLink>,
+//         })),
+//       });
+//     }
 
-    return acc;
-  },
-  []
-);
+//     return acc;
+//   },
+//   []
+// );
 
-export const AdminRoutes = AdminPaths.reduce((acc: TAdminRoutes[], item) => {
-  if (item.path && item.element) {
-    acc.push({
-      path: item.path,
-      element: item.element,
-    });
-  }
-  if (item.children) {
-    item.children.forEach((child) => {
-      acc.push({
-        path: child.path,
-        element: child.element,
-      });
-    });
-  }
-  return acc;
-}, []);
+// export const AdminRoutes = AdminPaths.reduce((acc: TAdminRoutes[], item) => {
+//   if (item.path && item.element) {
+//     acc.push({
+//       path: item.path,
+//       element: item.element,
+//     });
+//   }
+//   if (item.children) {
+//     item.children.forEach((child) => {
+//       acc.push({
+//         path: child.path,
+//         element: child.element,
+//       });
+//     });
+//   }
+//   return acc;
+// }, []);
