@@ -1,13 +1,23 @@
-import { Layout } from "antd";
+import { Button, Layout } from "antd";
 import { Outlet } from "react-router-dom";
 import Sidebar from "./Sidebar";
+import { useAppDispatch } from "../../Redux/hooks";
+import { logout } from "../../Redux/Features/auth/authSlice";
 const { Header, Content, Footer } = Layout;
 const MainLayout = () => {
+  const dispatch = useAppDispatch();
+  const handleLogout = () => {
+    dispatch(logout());
+  };
   return (
     <Layout style={{ minHeight: "100vh" }}>
       <Sidebar />
       <Layout>
-        <Header style={{ padding: 0 }} />
+        <Header style={{ padding: 0 }}>
+          <Button type="primary" onClick={handleLogout}>
+            Logout{" "}
+          </Button>
+        </Header>
         <Content style={{ margin: "24px 16px 0" }}>
           <div
             style={{

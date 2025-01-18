@@ -5,6 +5,8 @@ import { FacultyPaths } from "../../Routes/Faculty.routes";
 import { StudentPaths } from "../../Routes/Student.routes";
 import Sider from "antd/es/layout/Sider";
 import { Menu } from "antd";
+import { useAppSelector } from "../../Redux/hooks";
+import { selectUser } from "../../Redux/Features/auth/authSlice";
 const userRole = {
   ADMIN: "admin",
   FACULTY: "faculty",
@@ -12,9 +14,9 @@ const userRole = {
 };
 
 const Sidebar = () => {
-  const role = "admin";
+  const user = useAppSelector(selectUser);
   let sidebarItems;
-  switch (role) {
+  switch (user!.role) {
     case userRole.ADMIN:
       sidebarItems = sidebarItemsGenerator(AdminPaths, userRole.ADMIN);
       break;
@@ -37,6 +39,13 @@ const Sidebar = () => {
       }}
       onCollapse={(collapsed, type) => {
         console.log(collapsed, type);
+      }}
+      style={{
+        overflow: "auto",
+        height: "100vh",
+        position: "sticky",
+        top: 0,
+        left: 0,
       }}
     >
       <div

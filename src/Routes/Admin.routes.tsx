@@ -4,6 +4,12 @@ import CreateAdmin from "../Pages/Admin/CreateAdmin";
 import CreateFaculty from "../Pages/Admin/CreateFaculty";
 import CreateStudent from "../Pages/Admin/CreateStudent";
 import { ReactNode } from "react";
+import AcademicSemester from "../Pages/Admin/AcademicManagement/AcademicSemester";
+import CreateAcademicSemester from "../Pages/Admin/AcademicManagement/CreateAcademicSemester";
+import AcademicDepartment from "../Pages/Admin/AcademicManagement/AcademicDepartment";
+import CreateAcademicDepartment from "../Pages/Admin/AcademicManagement/CreateAcademicDepartment";
+import CreateAcademicFaculty from "../Pages/Admin/AcademicManagement/CreateAcademicFaculty";
+import AcademicFaculty from "../Pages/Admin/AcademicManagement/AcademicFaculty";
 export type TAdminSideBarItems = {
   key: string;
   label: ReactNode;
@@ -19,6 +25,41 @@ export const AdminPaths = [
     name: "Dashboard",
     path: "dashboard",
     element: <AdminDashboard />,
+  },
+  {
+    name: "Academic Management",
+    children: [
+      {
+        name: "Academic Semester",
+        path: "academic-semester",
+        element: <AcademicSemester />,
+      },
+      {
+        name: "Create Semester",
+        path: "create-semester",
+        element: <CreateAcademicSemester />,
+      },
+      {
+        name: "Academic Faculty",
+        path: "academic-faculty",
+        element: <AcademicFaculty />,
+      },
+      {
+        name: "Create Faculty",
+        path: "create-faculty",
+        element: <CreateAcademicFaculty />,
+      },
+      {
+        name: "Academic Department",
+        path: "academic-department",
+        element: <AcademicDepartment />,
+      },
+      {
+        name: "Create Department",
+        path: "create-department",
+        element: <CreateAcademicDepartment />,
+      },
+    ],
   },
   {
     name: "User Management",
