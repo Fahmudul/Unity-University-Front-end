@@ -11,6 +11,7 @@ import CreateAcademicDepartment from "../Pages/Admin/AcademicManagement/CreateAc
 import CreateAcademicFaculty from "../Pages/Admin/AcademicManagement/CreateAcademicFaculty";
 import AcademicFaculty from "../Pages/Admin/AcademicManagement/AcademicFaculty";
 import StudentData from "../Pages/Admin/UserManagement/StudentData";
+import SingleStudentData from "../Pages/Admin/UserManagement/SingleStudentData";
 export type TAdminSideBarItems = {
   key: string;
   label: ReactNode;
@@ -66,7 +67,16 @@ export const AdminPaths = [
     name: "User Management",
     children: [
       { name: "Create Admin", path: "create-admin", element: <CreateAdmin /> },
-      { name: "Students Data", path: "students-data", element: <StudentData /> },
+      {
+        name: "Students Data",
+        path: "students-data",
+        element: <StudentData />,
+      },
+      {
+        name: "Students Data",
+        path: "student-data/:id",
+        element: <SingleStudentData />,
+      },
       {
         name: "Create Student",
         path: "create-student",

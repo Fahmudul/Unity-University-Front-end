@@ -26,7 +26,7 @@ const StudentData = () => {
   } = useGetAllStudentsQuery([
     { name: "page", value: page },
     { name: "sort", value: "id" },
-    // {name:"limit"}
+    { name: "limit", value: 3 },
     ...params,
   ]);
 
