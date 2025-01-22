@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 import AdminDashboard from "../Pages/Admin/AdminDashboard";
-import CreateStudent from "../Pages/Admin/CreateStudent";
+import CreateStudent from "../Pages/Admin/UserManagement/CreateStudent";
 import { routeGenerator } from "../utils/routesGenerator";
 import { AdminPaths } from "./Admin.routes";
 import { StudentPaths } from "./Student.routes";

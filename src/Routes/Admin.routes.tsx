@@ -1,8 +1,8 @@
 import { NavLink } from "react-router-dom";
 import AdminDashboard from "../Pages/Admin/AdminDashboard";
-import CreateAdmin from "../Pages/Admin/CreateAdmin";
-import CreateFaculty from "../Pages/Admin/CreateFaculty";
-import CreateStudent from "../Pages/Admin/CreateStudent";
+import CreateAdmin from "../Pages/Admin/UserManagement/CreateAdmin";
+import CreateFaculty from "../Pages/Admin/UserManagement/CreateFaculty";
+import CreateStudent from "../Pages/Admin/UserManagement/CreateStudent";
 import { ReactNode } from "react";
 import AcademicSemester from "../Pages/Admin/AcademicManagement/AcademicSemester";
 import CreateAcademicSemester from "../Pages/Admin/AcademicManagement/CreateAcademicSemester";
@@ -10,6 +10,7 @@ import AcademicDepartment from "../Pages/Admin/AcademicManagement/AcademicDepart
 import CreateAcademicDepartment from "../Pages/Admin/AcademicManagement/CreateAcademicDepartment";
 import CreateAcademicFaculty from "../Pages/Admin/AcademicManagement/CreateAcademicFaculty";
 import AcademicFaculty from "../Pages/Admin/AcademicManagement/AcademicFaculty";
+import StudentData from "../Pages/Admin/UserManagement/StudentData";
 export type TAdminSideBarItems = {
   key: string;
   label: ReactNode;
@@ -45,8 +46,8 @@ export const AdminPaths = [
         element: <AcademicFaculty />,
       },
       {
-        name: "Create Faculty",
-        path: "create-faculty",
+        name: "Create A.Faculty",
+        path: "create-academic-faculty",
         element: <CreateAcademicFaculty />,
       },
       {
@@ -65,6 +66,7 @@ export const AdminPaths = [
     name: "User Management",
     children: [
       { name: "Create Admin", path: "create-admin", element: <CreateAdmin /> },
+      { name: "Students Data", path: "students-data", element: <StudentData /> },
       {
         name: "Create Student",
         path: "create-student",

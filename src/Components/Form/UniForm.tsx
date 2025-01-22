@@ -24,10 +24,14 @@ const UniForm = ({
   if (defaultValues) formConfig.defaultValues = defaultValues;
   if (resolver) formConfig.resolver = resolver;
   const methods = useForm(formConfig);
+  const submit: SubmitHandler<FieldValues> = (data) => {
+    onSubmit(data);
+    methods.reset();
+  };
   return (
     <Row justify={"center"} align={"middle"} style={{ height: "100%" }}>
       <FormProvider {...methods}>
-        <form onSubmit={methods.handleSubmit(onSubmit)}>{children}</form>
+        <form onSubmit={methods.handleSubmit(submit)}>{children}</form>
       </FormProvider>
     </Row>
   );

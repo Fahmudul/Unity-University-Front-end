@@ -1,5 +1,5 @@
 import Input from "antd/es/input/Input";
-import { Controller, useFormContext } from "react-hook-form";
+import { Controller } from "react-hook-form";
 type TInputProps = {
   type: string;
   name: string;
@@ -9,7 +9,7 @@ const UniFormInput = ({ name, type, label }: TInputProps) => {
   return (
     <Controller
       name={name}
-      render={({ field }) => (
+      render={({ field, fieldState: { error } }) => (
         <>
           <label htmlFor={name}>{label}</label>
           <Input
@@ -18,6 +18,7 @@ const UniFormInput = ({ name, type, label }: TInputProps) => {
             type={type}
             id={name}
           />
+          {error && <span style={{ color: "red" }}>{error.message}</span>}
         </>
       )}
     />
