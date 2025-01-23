@@ -1,6 +1,6 @@
-import { Table, TableProps } from "antd";
+import { Button, Table, TableProps } from "antd";
 import { useGetAllAcademicDepartmentQuery } from "../../../Redux/Features/Admin/academicManagement.api";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 interface DataType {
   key: string;
   name: string;
@@ -12,9 +12,6 @@ const columns: TableProps<DataType>["columns"] = [
     title: "Department ",
     dataIndex: "name",
     key: "academicFaculty",
-    render: (text, record) => (
-      <NavLink to={`${record.academicFacultyId}`}>{text}</NavLink>
-    ),
   },
   {
     title: "Academic Faculty",
@@ -23,8 +20,16 @@ const columns: TableProps<DataType>["columns"] = [
   },
   {
     title: "Action",
-    dataIndex: "action",
+    dataIndex: "academicFacultyId",
     key: "action",
+    render: (item) => {
+      console.log(item);
+      return (
+        <Link to={`/admin/academic-department/${item}`}>
+          <Button>Details</Button>
+        </Link>
+      );
+    },
   },
 ];
 const AcademicDepartment = () => {

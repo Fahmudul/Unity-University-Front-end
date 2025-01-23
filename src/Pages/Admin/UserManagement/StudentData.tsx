@@ -10,11 +10,12 @@ import { useState } from "react";
 import { TQueryParam, TStudent } from "../../../types";
 import { useGetAllStudentsQuery } from "../../../Redux/Features/Admin/userManagement.api";
 import { Link } from "react-router-dom";
+import ConfirmationModal from "../../../Components/Layout/Modal";
 
 export type TTableData = Pick<
   TStudent,
   "fullName" | "id" | "email" | "contactNo"
->;
+> & { status: string };
 
 const StudentData = () => {
   const [params, setParams] = useState<TQueryParam[]>([]);
@@ -35,10 +36,11 @@ const StudentData = () => {
   const metaData = studentData?.meta;
   console.log(metaData);
   const tableData = studentData?.data?.map(
-    ({ _id, fullName, id, email, contactNo }) => ({
+    ({ _id, fullName, id, user, email, contactNo }) => ({
       key: _id,
       fullName,
-      id,
+      userId: user._id,
+      status: user.status,
       email,
       contactNo,
     })
@@ -69,15 +71,16 @@ const StudentData = () => {
     {
       title: "Action",
       key: "x",
-      render: (item) => {
-        console.log(item);
+      dataIndex: "userId",
+      render: (item, record) => {
+        console.log(record);
         return (
           <Space>
-            <Link to={`/admin/student-data/${item.key}`}>
+            <Link to={`/admin/student-data/${item}`}>
               <Button>Details</Button>
             </Link>
             <Button>Update</Button>
-            <Button>Block</Button>
+            <ConfirmationModal id={item} status={record?.status} />
           </Space>
         );
       },

@@ -1,17 +1,22 @@
-import { NavLink } from "react-router-dom";
 import AdminDashboard from "../Pages/Admin/AdminDashboard";
 import CreateAdmin from "../Pages/Admin/UserManagement/CreateAdmin";
 import CreateFaculty from "../Pages/Admin/UserManagement/CreateFaculty";
 import CreateStudent from "../Pages/Admin/UserManagement/CreateStudent";
 import { ReactNode } from "react";
-import AcademicSemester from "../Pages/Admin/AcademicManagement/AcademicSemester";
-import CreateAcademicSemester from "../Pages/Admin/AcademicManagement/CreateAcademicSemester";
-import AcademicDepartment from "../Pages/Admin/AcademicManagement/AcademicDepartment";
-import CreateAcademicDepartment from "../Pages/Admin/AcademicManagement/CreateAcademicDepartment";
-import CreateAcademicFaculty from "../Pages/Admin/AcademicManagement/CreateAcademicFaculty";
-import AcademicFaculty from "../Pages/Admin/AcademicManagement/AcademicFaculty";
+import AcademicSemester from "../Pages/Admin/Academic Management/AcademicSemester";
+import CreateAcademicSemester from "../Pages/Admin/Academic Management/CreateAcademicSemester";
+import AcademicDepartment from "../Pages/Admin/Academic Management/AcademicDepartment";
+import CreateAcademicDepartment from "../Pages/Admin/Academic Management/CreateAcademicDepartment";
+import CreateAcademicFaculty from "../Pages/Admin/Academic Management/CreateAcademicFaculty";
+import AcademicFaculty from "../Pages/Admin/Academic Management/AcademicFaculty";
 import StudentData from "../Pages/Admin/UserManagement/StudentData";
 import SingleStudentData from "../Pages/Admin/UserManagement/SingleStudentData";
+import SemesterRegistration from "../Pages/Admin/Course Management/SemesterRegistration";
+import RegisteredSemesters from "../Pages/Admin/Course Management/RegisteredSemesters";
+import CreateCourse from "../Pages/Admin/Course Management/CreateCourse";
+import Courses from "../Pages/Admin/Course Management/Courses";
+import OfferCourse from "../Pages/Admin/Course Management/OfferCourse";
+import OfferedCourses from "../Pages/Admin/Course Management/OfferedCourses";
 export type TAdminSideBarItems = {
   key: string;
   label: ReactNode;
@@ -73,7 +78,6 @@ export const AdminPaths = [
         element: <StudentData />,
       },
       {
-        name: "Students Data",
         path: "student-data/:id",
         element: <SingleStudentData />,
       },
@@ -86,6 +90,41 @@ export const AdminPaths = [
         name: "Create Faculty",
         path: "create-faculty",
         element: <CreateFaculty />,
+      },
+    ],
+  },
+  {
+    name: "Course Mangement",
+    children: [
+      {
+        name: "Semester Registration",
+        path: "semester-registration",
+        element: <SemesterRegistration />,
+      },
+      {
+        name: "Registered Semesters",
+        path: "registered-semesters",
+        element: <RegisteredSemesters />,
+      },
+      {
+        name: "Create Course",
+        path: "create-course",
+        element: <CreateCourse />,
+      },
+      {
+        name: "Courses",
+        path: "courses",
+        element: <Courses />,
+      },
+      {
+        name: "Offer Course",
+        path: "offer-course",
+        element: <OfferCourse />,
+      },
+      {
+        name: "Offered Courses",
+        path: "offered-courses",
+        element: <OfferedCourses />,
       },
     ],
   },

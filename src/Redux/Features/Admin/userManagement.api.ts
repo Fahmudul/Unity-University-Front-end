@@ -25,6 +25,7 @@ const userManagementApi = baseApi.injectEndpoints({
           params: params,
         };
       },
+      providesTags: ["User"],
     }),
 
     getSingleStundet: builder.query({
@@ -36,6 +37,15 @@ const userManagementApi = baseApi.injectEndpoints({
         };
       },
     }),
+
+    blockUser: builder.mutation({
+      query: ({ id, data }) => ({
+        url: `/users/change-status/${id}`,
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags: ["User"],
+    }),
   }),
 });
 
@@ -43,4 +53,5 @@ export const {
   useAddStudentMutation,
   useGetAllStudentsQuery,
   useGetSingleStundetQuery,
+  useBlockUserMutation,
 } = userManagementApi;
