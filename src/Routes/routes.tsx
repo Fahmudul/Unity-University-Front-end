@@ -6,20 +6,34 @@ import { routeGenerator } from "../utils/routesGenerator";
 import { AdminPaths } from "./Admin.routes";
 import { StudentPaths } from "./Student.routes";
 import Login from "../Pages/Student/Login";
+import PrivateRoute from "../Components/Layout/PrivateRoute";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: (
+      <PrivateRoute role={undefined}>
+        {" "}
+        <App />
+      </PrivateRoute>
+    ),
   },
   {
     path: "/admin",
-    element: <App />,
+    element: (
+      <PrivateRoute role={"admin"}>
+        <App />
+      </PrivateRoute>
+    ),
     children: routeGenerator(AdminPaths),
   },
   {
     path: "/student",
-    element: <App />,
+    element: (
+      <PrivateRoute role={"student"}>
+        <App />
+      </PrivateRoute>
+    ),
     children: routeGenerator(StudentPaths),
   },
   {

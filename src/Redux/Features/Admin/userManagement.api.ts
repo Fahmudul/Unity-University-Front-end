@@ -46,6 +46,13 @@ const userManagementApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["User"],
     }),
+
+    getAllFaculty: builder.query({
+      query: () => ({
+        url: "/faculties",
+        method: "GET",
+      }),
+    }),
   }),
 });
 
@@ -54,4 +61,5 @@ export const {
   useGetAllStudentsQuery,
   useGetSingleStundetQuery,
   useBlockUserMutation,
+  useGetAllFacultyQuery
 } = userManagementApi;

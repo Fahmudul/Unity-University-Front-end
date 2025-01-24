@@ -1,11 +1,5 @@
-import React from 'react'
-
 const OfferedCourses = () => {
-  return (
-    <div>
-      
-    </div>
-  )
-}
+  return <div></div>;
+};
 
-export default OfferedCourses
+export default OfferedCourses;

@@ -1,8 +1,12 @@
 import { Button, Dropdown, Table, TableColumnsType, Tag } from "antd";
-import { useGetAllRegisteredSemestersQuery } from "../../../Redux/Features/Admin/courseManagement.api";
+import {
+  useGetAllRegisteredSemestersQuery,
+  useUpdateRegisteredSemesterMutation,
+} from "../../../Redux/Features/Admin/courseManagement.api";
 import moment from "moment";
 import { TSemester } from "../../../types";
 import { useState } from "react";
+import { toast } from "sonner";
 export type TTableData = Pick<TSemester, "startDate" | "endDate" | "status">;
 
 const items = [
@@ -26,7 +30,7 @@ const RegisteredSemesters = () => {
   const { data: semesterData, isFetching } =
     useGetAllRegisteredSemestersQuery(undefined);
 
-  // const [updateSemesterStatus] = useUpdateRegisteredSemesterMutation();
+  const [updateSemesterStatus] = useUpdateRegisteredSemesterMutation();
 
   console.log(semesterId);
 
@@ -40,15 +44,21 @@ const RegisteredSemesters = () => {
     })
   );
 
-  const handleStatusUpdate = (data) => {
+  const handleStatusUpdate = async (data) => {
+    const toastId = toast.loading("Updating semester status...");
     const updateData = {
       id: semesterId,
       data: {
         status: data.key,
       },
     };
+    console.log(updateData);
 
-    // updateSemesterStatus(updateData);
+    const res = await updateSemesterStatus(updateData);
+    console.log(res);
+    if (res?.data?.success) {
+      toast.success("Semester status updated successfully", { id: toastId });
+    }
   };
 
   const menuProps = {

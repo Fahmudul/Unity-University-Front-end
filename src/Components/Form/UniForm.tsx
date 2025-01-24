@@ -29,9 +29,15 @@ const UniForm = ({
     methods.reset();
   };
   return (
-    <Row justify={"center"} align={"middle"} style={{ height: "100%" }}>
+    <Row
+      // justify={"center"}
+      // align={"middle"}
+      style={{ height: "100%", width: "100%" }}
+    >
       <FormProvider {...methods}>
-        <form onSubmit={methods.handleSubmit(submit)}>{children}</form>
+        <form onSubmit={methods.handleSubmit(submit)} style={{ width: "100%" }}>
+          {children}
+        </form>
       </FormProvider>
     </Row>
   );

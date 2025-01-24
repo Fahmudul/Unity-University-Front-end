@@ -1,4 +1,3 @@
-import React from "react";
 import sidebarItemsGenerator from "../../utils/sidebarItemsGenerator";
 import { AdminPaths } from "../../Routes/Admin.routes";
 import { FacultyPaths } from "../../Routes/Faculty.routes";
@@ -6,7 +5,11 @@ import { StudentPaths } from "../../Routes/Student.routes";
 import Sider from "antd/es/layout/Sider";
 import { Menu } from "antd";
 import { useAppSelector } from "../../Redux/hooks";
-import { selectUser } from "../../Redux/Features/auth/authSlice";
+// import { selectUser } from "../../Redux/Features/auth/authSlice";
+import { verifyToken } from "../../utils/verifyToken";
+import { selectToken } from "../../Redux/Features/auth/authSlice";
+import { TUser } from "./PrivateRoute";
+import { ItemType, MenuItemType } from "antd/es/menu/interface";
 const userRole = {
   ADMIN: "admin",
   FACULTY: "faculty",
@@ -14,9 +17,14 @@ const userRole = {
 };
 
 const Sidebar = () => {
-  const user = useAppSelector(selectUser);
+  // const user = useAppSelector(selectUser);
+  const token = useAppSelector(selectToken);
+  let user;
+  if (token) {
+    user = verifyToken(token!);
+  }
   let sidebarItems;
-  switch (user!.role) {
+  switch ((user as TUser)!.role) {
     case userRole.ADMIN:
       sidebarItems = sidebarItemsGenerator(AdminPaths, userRole.ADMIN);
       break;
@@ -65,7 +73,7 @@ const Sidebar = () => {
         theme="dark"
         mode="inline"
         defaultSelectedKeys={["4"]}
-        items={sidebarItems}
+        items={sidebarItems as ItemType<MenuItemType>[]}
       />
     </Sider>
   );
